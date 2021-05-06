@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login Page</title>
+    <title>Sign UP</title>
 
     <!-- Owl-Carousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
@@ -56,13 +56,13 @@
             </ul>
         </div>
         <div class="signupbox">
-            <img src="https://www.pngarts.com/files/11/Avatar-PNG-Transparent-Image.png" class="avatar" style="width: 270px;">
+            <img src="{% static 'Avatar.png' %}" class="avatar" style="width: 270px;">
                   <h1> Signup Here</h1>
                   <form method="POST">
                       {% csrf_token %}
                     <p>Email</p>
                     <input type="text" name="email" placeholder="Email">
-                    <p>username</p>
+                    <p>Username</p>
                     <input type="text" name="username" placeholder="Username">
                     <p>Password</p>
                     <input type="password" name="password1" placeholder="Password">

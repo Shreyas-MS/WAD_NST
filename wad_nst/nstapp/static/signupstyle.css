@@ -19,6 +19,13 @@ p{
 input{
     padding:0 0 3px 5px;
 }
+
+form{
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
 .signupbox{
 
     width: 320;
@@ -31,6 +38,7 @@ input{
     transform: translate(-50%,-50%);
     box-sizing: border-box;
     padding: 10px 30px;
+    margin-top: 15px;
 
 
 

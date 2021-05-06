@@ -8,6 +8,7 @@ from django.core.files.storage import FileSystemStorage
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
 from .forms import UserRegistrationForm,FeedbackForm,UserUpdateForm,ProfileUpdateForm
+from django.contrib.auth.decorators import login_required 
 
 PACKAGE_PARENT = ".."
 SCRIPT_DIR = os.path.dirname(
@@ -72,10 +73,10 @@ def about(request):
 def gallery(request):
     return render(request, "gallery.html")
 
-
+@login_required
 def logoutuser(request):
     """
-    Logging out the user using django inbuil function logout()
+    Logging out the user using django inbuilt function logout()
 
     Returns
     -------
@@ -102,9 +103,10 @@ def loginuser(request):
         first argument to the view function. Each view is 
         responsible for returning an HttpResponse object.
 
+
     Returns
     -------
-    If it's a gett method e return form. Else if a post method 
+    If it's a get method e return form. Else if a post method 
     and no error if redirect to home page or else we return error.
         
     """    
@@ -138,12 +140,25 @@ def upload(request):
         print(uploaded_file.size)
     return render(request, "upload.html")
 
-
+@login_required
 def profile(request):
     return render(request,'profile.html')
 
-
+@login_required
 def feedback(request):
+    """
+    Feedback Form where user can post their views experiance and 
+    suggestions for the admin. Similar to login page here we have 
+    to create model and the using forms swe can take input from
+    user and store in the database.
+
+
+    Returns
+    -------
+    If it's a get method e return form. Else if a post method 
+    and no error if redirect to home page or else we return error.
+    
+    """    
     if request.method == 'GET':
         return render(request,'feedback.html',{'form':FeedbackForm()})
     else :
@@ -154,8 +169,21 @@ def feedback(request):
         except ValueError :
             return render(request,'feedback.html',{'form':FeedbackForm(),'error':"Bad Data Try Again !"})
 
-
+@login_required
 def profileUpdate(request):
+    """
+    Updating user profile but we keep the user data filled in 
+    it so that they have to edit only those part that they wish
+    to change. Using two form UserUpdateForm and ProfileUpdateForm
+    As there is no field of image in User model so we can't do it 
+    directly. Checking if form is valid if valid update the data.
+    Else error.
+
+
+    Returns
+    -------
+    Redirecting it to the Profile page
+    """    
     if  request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,request.FILES, instance=request.user.profile)

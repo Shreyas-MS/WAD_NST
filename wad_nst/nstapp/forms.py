@@ -4,14 +4,14 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Feedback,Profile
 from django.forms import ModelForm
 
-"""
+
+class UserRegistrationForm(UserCreationForm):
+    """
     Building the new form UserRegistrationFOrm from the 
     UserCreationForm for the model user so that we can add
     an extra field email. 
 
-"""
-
-class UserRegistrationForm(UserCreationForm):
+    """
     email = forms.EmailField()
 
     class Meta:
@@ -22,6 +22,12 @@ class FeedbackForm(ModelForm):
     class Meta :
         model = Feedback
         fields = ['email','title','feedback']
+
+""" 
+    UserUpdateForm and ProfileUpdateForm these two forms were created 
+    serve the purpose of profile update form.
+    
+"""
 
 class UserUpdateForm(ModelForm):
     email = forms.EmailField()

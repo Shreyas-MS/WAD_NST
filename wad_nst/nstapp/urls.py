@@ -5,11 +5,16 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("about/", views.about, name="about"),
+
+    # Auth
     path("login/", views.loginuser, name="loginuser"),
     path("logout/", views.logoutuser, name="logoutuser"),
     path("signup/", views.signupuser, name="signupuser"),
+
+
+    # Features 
+    path("", views.home, name="home"),
+    path("about/", views.about, name="about"),
     path("profile/", views.profile, name="profile"),
     path("gallery/", views.gallery, name="gallery"),
     path("upload/", views.upload, name="upload"),

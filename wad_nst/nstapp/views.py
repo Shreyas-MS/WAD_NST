@@ -23,6 +23,19 @@ def home(request):
 
 
 def signupuser(request):
+    """ 
+    Signup function to register the user into the website 
+    for that We are using django inbuilt model User and added
+    extra field email in USerCreationForm and Created a new Form 
+    As User RegistrationForm in forms.py.
+
+    When we get a request.POST method we are checking for some
+    variables and afterwards we are the form into database. 
+
+    Returns
+    -------
+        After sucess we are redirection user to the home page.
+    """    
     if request.method == "GET":
         return render(request, "signupuser.html", {"forms": UserRegistrationForm()})
     else:
@@ -34,7 +47,7 @@ def signupuser(request):
                 user.save()
                 # When user signed in redirect to new url.
                 login(request, user)
-                return redirect("about")
+                return redirect("home")
 
             except IntegrityError:
                 return render(
@@ -61,11 +74,40 @@ def gallery(request):
 
 
 def logoutuser(request):
+    """
+    Logging out the user using django inbuil function logout()
+
+    Returns
+    -------
+        After logging out we are redirectiong user to the home
+        page.
+    """    
     logout(request)
     return redirect("home")
 
 
 def loginuser(request):
+    """
+    Logging in the user into the website for that we are using 
+    django form AuthenticationForm() when we get POST method we 
+    authenticate the user from data we have in database. If didn't 
+    match e return an error. Then redirect it to the home page.
+
+    Parameters
+    ----------
+    request : 
+        Httprequest Django creates an HttpRequest object that 
+        contains metadata about the request. Then Django loads
+        the appropriate view, passing the HttpRequest as the 
+        first argument to the view function. Each view is 
+        responsible for returning an HttpResponse object.
+
+    Returns
+    -------
+    If it's a gett method e return form. Else if a post method 
+    and no error if redirect to home page or else we return error.
+        
+    """    
     if request.method == "GET":
         return render(request, "loginuser.html", {"forms": AuthenticationForm()})
     else:

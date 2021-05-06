@@ -41,7 +41,11 @@
       <li>
         <a class="nav" href="{% url 'gallery' %}">Gallery</a>
       </li>
+
       {% if user.is_authenticated %}
+      <li>
+        <a class="nav" href="{% url 'feedback' %}">Feedback</a>
+      </li>
       <li>
         <a class="nav" href="{% url 'profile' %}">Profile</a>
       </li>

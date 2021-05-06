@@ -18,6 +18,7 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("gallery/", views.gallery, name="gallery"),
     path("upload/", views.upload, name="upload"),
+    path('feedback/',views.feedback,name = 'feedback'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm,FeedbackForm
 
 PACKAGE_PARENT = ".."
 SCRIPT_DIR = os.path.dirname(
@@ -141,3 +141,15 @@ def upload(request):
 
 def profile(request):
     return render(request,'profile.html')
+
+
+def feedback(request):
+    if request.method == 'GET':
+        return render(request,'feedback.html',{'form':FeedbackForm()})
+    else :
+        try :
+            form = FeedbackForm(request.POST)           # Put all the data we get from webpage 
+            newtodo = form.save()                             # Saving the value.
+            return redirect('home')
+        except ValueError :
+            return render(request,'feedback.html',{'form':FeedbackForm(),'error':"Bad Data Try Again !"})

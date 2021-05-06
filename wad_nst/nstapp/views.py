@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
+from .forms import UserRegistrationForm
 
 PACKAGE_PARENT = ".."
 SCRIPT_DIR = os.path.dirname(
@@ -23,12 +24,12 @@ def home(request):
 
 def signupuser(request):
     if request.method == "GET":
-        return render(request, "signupuser.html", {"forms": UserCreationForm()})
+        return render(request, "signupuser.html", {"forms": UserRegistrationForm()})
     else:
         if request.POST["password1"] == request.POST["password2"]:
             try:
                 user = User.objects.create_user(
-                    request.POST["username"], password=request.POST["password1"]
+                    request.POST["username"], password=request.POST["password1"],email = request.POST['email']
                 )
                 user.save()
                 # When user signed in redirect to new url.
@@ -39,7 +40,7 @@ def signupuser(request):
                 return render(
                     request,
                     "signupuser.html",
-                    {"forms": UserCreationForm(), "error": "Username is already taken try other!"},
+                    {"forms": UserRegistrationForm(), "error": "Username is already taken try other!"},
                 )
 
         else:

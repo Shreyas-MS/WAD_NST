@@ -10,9 +10,9 @@ urlpatterns = [
     path("login/", views.loginuser, name="loginuser"),
     path("logout/", views.logoutuser, name="logoutuser"),
     path("signup/", views.signupuser, name="signupuser"),
+    path("profile/", views.profile, name="profile"),
     path("gallery/", views.gallery, name="gallery"),
     path("upload/", views.upload, name="upload"),
 ]
 
-# if settings.DEBUG:
-#     urlpatterns+=static.(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

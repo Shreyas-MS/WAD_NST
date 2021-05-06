@@ -95,3 +95,7 @@ def upload(request):
         print(url)
         print(uploaded_file.size)
     return render(request, "upload.html")
+
+
+def profile(request):
+    return render(request,'profile.html')

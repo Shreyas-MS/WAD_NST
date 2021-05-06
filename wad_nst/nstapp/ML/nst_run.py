@@ -28,7 +28,35 @@ def run_style_transfer(
     style_weight=1000000,
     content_weight=1,
 ):
-    """Run the style transfer."""
+    """This function runs the neural style transfer algorithm. This is not to be used eternally
+    outside the ML library
+
+    Parameters
+    ----------
+    cnn : torch model
+        Convolutional neural network
+    normalization_mean : float
+        mean
+    normalization_std : float
+        standard deviation
+    content_img : img
+        The original content image
+    style_img : img
+        The style image
+    input_img : img
+        copy of content image
+    num_steps : int, optional
+        number of steps in optimization, by default 300
+    style_weight : int, optional
+        hyperparam to adjust amount of styling, by default 1000000
+    content_weight : int, optional
+        hyperparam to adjust amount of styling, by default 1
+
+    Returns
+    -------
+    img
+        The final stylized image
+    """
     print("Building the style transfer model..")
     model, style_losses, content_losses = get_style_model_and_losses(
         cnn, normalization_mean, normalization_std, style_img, content_img
@@ -79,6 +107,18 @@ def run_style_transfer(
 
 
 def run(contentpath, stylepath, savepath):
+    """This is the external facing run fucntion. Calling this function runs the Neural Style
+    Transfer algorithm.
+
+    Parameters
+    ----------
+    contentpath : str
+        The path to the content image.
+    stylepath : str
+        The path to the style image.
+    savepath : str
+        The path to save the stylized image.
+    """
     loader = ImageLoader(contentpath=contentpath, stylepath=stylepath)
 
     content_img, style_img = loader.open_images()

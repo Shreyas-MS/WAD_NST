@@ -19,6 +19,7 @@ urlpatterns = [
     path("gallery/", views.gallery, name="gallery"),
     path("upload/", views.upload, name="upload"),
     path('feedback/',views.feedback,name = 'feedback'),
+    path('profileupdate/',views.profileUpdate,name = 'profileUpdate'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

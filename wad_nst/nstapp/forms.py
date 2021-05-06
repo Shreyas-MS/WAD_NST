@@ -1,7 +1,7 @@
 from django import forms 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Feedback
+from .models import Feedback,Profile
 from django.forms import ModelForm
 
 """
@@ -22,3 +22,15 @@ class FeedbackForm(ModelForm):
     class Meta :
         model = Feedback
         fields = ['email','title','feedback']
+
+class UserUpdateForm(ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username','email']
+
+class ProfileUpdateForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']

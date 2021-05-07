@@ -1,27 +1,31 @@
-from django import forms 
-from django.contrib.auth.models import User
+from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Feedback,Profile,Image
+from django.contrib.auth.models import User
 from django.forms import ModelForm
+
+from .models import Feedback, Image, Profile
 
 
 class UserRegistrationForm(UserCreationForm):
     """
-    Building the new form UserRegistrationFOrm from the 
+    Building the new form UserRegistrationFOrm from the
     UserCreationForm for the model user so that we can add
-    an extra field email. 
+    an extra field email.
 
     """
+
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['username','email','password1','password2']
+        fields = ["username", "email", "password1", "password2"]
+
 
 class FeedbackForm(ModelForm):
-    class Meta :
+    class Meta:
         model = Feedback
-        fields = ['email','title','feedback']
+        fields = ["email", "title", "feedback"]
+
 
 """ 
     UserUpdateForm and ProfileUpdateForm these two forms were created 
@@ -29,19 +33,22 @@ class FeedbackForm(ModelForm):
     
 """
 
+
 class UserUpdateForm(ModelForm):
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['username','email']
+        fields = ["username", "email"]
+
 
 class ProfileUpdateForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ["image"]
+
 
 class ImageForm(ModelForm):
-    class Meta :
+    class Meta:
         model = Image
-        fields = ['image1','image2']
+        fields = ["Content", "Style"]

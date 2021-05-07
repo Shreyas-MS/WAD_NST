@@ -28,3 +28,8 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.title
+
+class Image(models.Model):
+    image1 = models.ImageField(upload_to = 'style')
+    image2 = models.ImageField(upload_to = 'base')
+    image3 = models.ImageField(upload_to = 'generated')

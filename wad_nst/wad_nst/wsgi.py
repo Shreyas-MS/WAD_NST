@@ -14,3 +14,5 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wad_nst.settings')
 
 application = get_wsgi_application()
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

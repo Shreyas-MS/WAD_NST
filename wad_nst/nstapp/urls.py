@@ -17,9 +17,10 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path("profile/", views.profile, name="profile"),
     path("gallery/", views.gallery, name="gallery"),
-    path("upload/", views.upload, name="upload"),
+    # path("upload/", views.upload, name="upload"),
     path('feedback/',views.feedback,name = 'feedback'),
     path('profileupdate/',views.profileUpdate,name = 'profileUpdate'),
+    path('upload/',views.imageupload,name = 'imageupload'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

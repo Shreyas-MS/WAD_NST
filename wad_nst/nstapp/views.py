@@ -7,8 +7,10 @@ from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
-from .forms import UserRegistrationForm,FeedbackForm,UserUpdateForm,ProfileUpdateForm
+from .forms import UserRegistrationForm,FeedbackForm,UserUpdateForm,ProfileUpdateForm,ImageForm
 from django.contrib.auth.decorators import login_required 
+from django.conf import settings
+
 
 PACKAGE_PARENT = ".."
 SCRIPT_DIR = os.path.dirname(
@@ -210,3 +212,22 @@ def profileUpdate(request):
             'p_form':p_form
         }
         return render(request,'profileUpdate.html',context)
+
+def imageupload(request):
+    if request.method == 'GET':
+        return render(request,'imageupload.html',{'form':ImageForm()})    
+    else :
+        try :
+            form = ImageForm(request.POST,request.FILES)           # Put all the data we get from webpage 
+            newtodo = form.save()                             # Saving the value.
+            imageName1 = request.FILES['image1'].name
+            path1 = os.path.join(settings.MEDIA_URL, "/style/", imageName1)
+            imageName2 = request.FILES['image2'].name
+            path2 = os.path.join(settings.MEDIA_URL, "/base/", imageName2)
+            path3 = os.path.join(settings.MEDIA_URL, "/generated/",'img.jpg')
+            # run(path2,path1,path3)
+
+            return render(request,'about.html',{'path1':path1,'path2':path2,'path3':path3})
+            
+        except ValueError :
+            return render(request,'imageupload.html',{'form':ImageForm(),'error':"Bad Data Try Again !"})

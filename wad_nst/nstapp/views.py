@@ -10,7 +10,7 @@ from django.shortcuts import redirect, render
 from .forms import UserRegistrationForm,FeedbackForm,UserUpdateForm,ProfileUpdateForm,ImageForm
 from django.contrib.auth.decorators import login_required 
 from django.conf import settings
-
+from pathlib import Path
 
 PACKAGE_PARENT = ".."
 SCRIPT_DIR = os.path.dirname(
@@ -213,21 +213,26 @@ def profileUpdate(request):
         }
         return render(request,'profileUpdate.html',context)
 
+
+
 def imageupload(request):
     if request.method == 'GET':
         return render(request,'imageupload.html',{'form':ImageForm()})    
     else :
         try :
+            BASE_DIR = Path(__file__).resolve().parent.parent
             form = ImageForm(request.POST,request.FILES)           # Put all the data we get from webpage 
             newtodo = form.save()                             # Saving the value.
             imageName1 = request.FILES['image1'].name
-            path1 = os.path.join(settings.MEDIA_URL, "/style/", imageName1)
             imageName2 = request.FILES['image2'].name
-            path2 = os.path.join(settings.MEDIA_URL, "/base/", imageName2)
-            path3 = os.path.join(settings.MEDIA_URL, "/generated/",'img.jpg')
-            # run(path2,path1,path3)
+            imageName3 = 'abaa.jpg'
+            path1 = BASE_DIR / 'media' / 'style' / imageName1
+            path2 = BASE_DIR / 'media' / 'base' / imageName2
+            path3 = BASE_DIR / 'media' / 'generated' / imageName3
 
-            return render(request,'about.html',{'path1':path1,'path2':path2,'path3':path3})
+            run(path2,path1,path3)
+
+            return render(request,'about.html',{'path1':path1,'path2':path2,'path3':path3,})
             
         except ValueError :
             return render(request,'imageupload.html',{'form':ImageForm(),'error':"Bad Data Try Again !"})

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
+
     <title>Neuresta - About</title>
     <link rel="stylesheet" href="{%static 'about_page.css'%}">
     <link rel="stylesheet" href="{%static 'navbar1.css'%}">
@@ -30,6 +31,9 @@
 
             {% if user.is_authenticated %}
             <li>
+                <a class="nav" href="{% url 'imageupload' %}">Upload</a>
+            </li>
+            <li>
                 <a class="nav" href="{% url 'feedback' %}">Feedback</a>
             </li>
             <li>
@@ -52,6 +56,7 @@
 
     <h1>{{ path1 }}</h1>
     <h1>{{ path2 }}</h1>
+    <h1>{{ path3 }}</h1>
     
     <section id="intro">
         <div class="top-right-gradient"></div>
@@ -94,6 +99,7 @@
                 <a href="#" class="cta">Learn More</a>
             </div>
         </div>
+        <img src="D:\College\Semester 4\WAD\WAD_NST\wad_nst\media\generated\abaa.jpg">
 
     </section>
 

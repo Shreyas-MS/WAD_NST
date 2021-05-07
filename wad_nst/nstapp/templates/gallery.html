@@ -32,6 +32,9 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li>
+                    <a class="nav" href="{% url 'imageUpload' %}">Upload</a>
+                </li>
+                <li>
                     <a class="nav" href="{% url 'feedback' %}">Feedback</a>
                 </li>
                 <li>

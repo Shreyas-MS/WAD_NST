@@ -18,6 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # NST_app
+    # including all the urls of nstapp.
     path("", include("nstapp.urls")),
 ]

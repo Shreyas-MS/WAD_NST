@@ -135,19 +135,6 @@ def loginuser(request):
             return redirect("home")
 
 
-def upload(request):
-    context = {}
-    if request.method == "POST":
-        uploaded_file = request.FILES["image"]
-        fs = FileSystemStorage()
-        fs.save(uploaded_file.name, uploaded_file)
-        name = fs.save(uploaded_file.name, uploaded_file)
-        url = fs.url(name)
-        context["url"] = fs.url(name)
-        print(url)
-        print(uploaded_file.size)
-    return render(request, "upload.html")
-
 
 @login_required
 def profile(request):
@@ -222,6 +209,18 @@ def profileUpdate(request):
 
 
 def imageupload(request):
+    """
+    Image upload app to take user input two images and run it through the 
+    ML algorithm and generate the new styled image. For the run function
+    we need the address of images that we are collecting in path1,path2 
+    and path3. For the simplicity sake as of now we fix the output image name.
+
+
+    Returns:
+            If it's a get method return form. Else if a post method
+    and no error if redirect to image Generated page where user can 
+    see the image genrated or else we return error.
+    """    
     if request.method == "GET":
         return render(request, "imageupload.html", {"form": ImageForm()})
     else:

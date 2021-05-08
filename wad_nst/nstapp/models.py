@@ -22,6 +22,14 @@ class Profile(models.Model):
 
 
 class Feedback(models.Model):
+    
+    """
+    Creating a new model name Feedback to get the views of user 
+    about our website. We are storing thier mail id for their 
+    refrence. Created will automatically store the time feedback
+    posted.
+
+    """
     email = models.EmailField(max_length=254)
     title = models.CharField(max_length=100)
     feedback = models.TextField(blank=True)
@@ -32,6 +40,11 @@ class Feedback(models.Model):
 
 
 class Image(models.Model):
-    Content = models.ImageField(upload_to="style")
-    Style = models.ImageField(upload_to="base")
+    """
+    Created a model name Image to get user image and feed it to the 
+    ML model and display the output. And storing the images in media
+    folder in their respective subfolder. 
+    """    
+    image1 = models.ImageField(upload_to="style")
+    image2 = models.ImageField(upload_to="base")
     image3 = models.ImageField(upload_to="generated")

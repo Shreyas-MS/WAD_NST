@@ -1,21 +1,11 @@
-<<<<<<< HEAD
+
 from django import forms 
 from django.contrib.auth.models import User as UserModel
 from django.contrib.auth.forms import UserCreationForm
 from .models import Feedback as FeedbackModel
 from .models import Profile as ProfileModel
 from .models import Image as ImageModel
-
-
-=======
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
->>>>>>> 4b824fe06be851f8a6a19186a1f64e106f8642a2
 from django.forms import ModelForm
-
-from .models import Feedback, Image, Profile
-
 
 class UserRegistrationForm(UserCreationForm):
     """
@@ -28,7 +18,6 @@ class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
 
     class Meta:
-<<<<<<< HEAD
         model = UserModel
         fields = ['username','email','password1','password2']
 
@@ -36,17 +25,6 @@ class FeedbackForm(ModelForm):
     class Meta :
         model = FeedbackModel
         fields = ['email','title','feedback']
-=======
-        model = User
-        fields = ["username", "email", "password1", "password2"]
-
-
-class FeedbackForm(ModelForm):
-    class Meta:
-        model = Feedback
-        fields = ["email", "title", "feedback"]
-
->>>>>>> 4b824fe06be851f8a6a19186a1f64e106f8642a2
 
 """ 
     UserUpdateForm and ProfileUpdateForm these two forms were created 
@@ -59,7 +37,6 @@ class UserUpdateForm(ModelForm):
     email = forms.EmailField()
 
     class Meta:
-<<<<<<< HEAD
         model = UserModel
         fields = ['username','email']
 
@@ -72,19 +49,3 @@ class ImageForm(ModelForm):
     class Meta :
         model = ImageModel
         fields = ['image1','image2']
-=======
-        model = User
-        fields = ["username", "email"]
-
-
-class ProfileUpdateForm(ModelForm):
-    class Meta:
-        model = Profile
-        fields = ["image"]
-
-
-class ImageForm(ModelForm):
-    class Meta:
-        model = Image
-        fields = ["Content", "Style"]
->>>>>>> 4b824fe06be851f8a6a19186a1f64e106f8642a2

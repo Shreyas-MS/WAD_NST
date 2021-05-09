@@ -23,9 +23,6 @@ from nstapp.ML.nst_run import run
 
 def home(request):
     return render(request, "home.html")
-
-
-def signupuser(request):
     """
     Signup function to register the user into the website
     for that We are using django inbuilt model User and added
@@ -39,6 +36,9 @@ def signupuser(request):
     -------
         After sucess we are redirection user to the home page.
     """
+
+def signupuser(request):
+
     if request.method == "GET":
         return render(request, "signupuser.html", {"forms": UserRegistrationForm()})
     else:
@@ -80,9 +80,6 @@ def about(request):
 def gallery(request):
     return render(request, "gallery.html")
 
-
-@login_required
-def logoutuser(request):
     """
     Logging out the user using django inbuilt function logout()
 
@@ -91,11 +88,13 @@ def logoutuser(request):
         After logging out we are redirectiong user to the home
         page.
     """
+
+@login_required
+def logoutuser(request):
+
     logout(request)
     return redirect("home")
 
-
-def loginuser(request):
     """
     Logging in the user into the website for that we are using
     django form AuthenticationForm() when we get POST method we
@@ -118,6 +117,8 @@ def loginuser(request):
     and no error if redirect to home page or else we return error.
 
     """
+def loginuser(request):
+
     if request.method == "GET":
         return render(request, "loginuser.html", {"forms": AuthenticationForm()})
     else:
@@ -141,8 +142,6 @@ def profile(request):
     return render(request, "profile.html")
 
 
-@login_required
-def feedback(request):
     """
     Feedback Form where user can post their views experiance and
     suggestions for the admin. Similar to login page here we have
@@ -156,6 +155,9 @@ def feedback(request):
     and no error if redirect to home page or else we return error.
 
     """
+@login_required
+def feedback(request):
+
     if request.method == "GET":
         return render(request, "feedback.html", {"form": FeedbackForm()})
     else:
@@ -169,8 +171,6 @@ def feedback(request):
             )
 
 
-@login_required
-def profileUpdate(request):
     """
     Updating user profile but we keep the user data filled in
     it so that they have to edit only those part that they wish
@@ -184,6 +184,8 @@ def profileUpdate(request):
     -------
     Redirecting it to the Profile page
     """
+@login_required
+def profileUpdate(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -207,8 +209,6 @@ def profileUpdate(request):
         context = {"u_form": u_form, "p_form": p_form}
         return render(request, "profileUpdate.html", context)
 
-
-def imageupload(request):
     """
     Image upload app to take user input two images and run it through the 
     ML algorithm and generate the new styled image. For the run function
@@ -221,6 +221,9 @@ def imageupload(request):
     and no error if redirect to image Generated page where user can 
     see the image genrated or else we return error.
     """    
+
+def imageupload(request):
+
     if request.method == "GET":
         return render(request, "imageupload.html", {"form": ImageForm()})
     else:

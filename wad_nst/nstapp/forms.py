@@ -7,15 +7,15 @@ from .models import Profile as ProfileModel
 from .models import Image as ImageModel
 from django.forms import ModelForm
 
+
+
+class UserRegistrationForm(UserCreationForm):
     """
     Building the new form UserRegistrationFOrm from the
     UserCreationForm for the model user so that we can add
     an extra field email.
 
     """
-
-class UserRegistrationForm(UserCreationForm):
-
 
     email = forms.EmailField()
 
@@ -28,11 +28,11 @@ class FeedbackForm(ModelForm):
         model = FeedbackModel
         fields = ['email','title','feedback']
 
-""" 
-    UserUpdateForm and ProfileUpdateForm these two forms were created 
-    serve the purpose of profile update form.
-    
-"""
+    """ 
+        UserUpdateForm and ProfileUpdateForm these two forms were created 
+        serve the purpose of profile update form.
+        
+    """
 
 
 class UserUpdateForm(ModelForm):

@@ -20,6 +20,7 @@ urlpatterns = [
     path('feedback/',views.feedback,name = 'feedback'),
     path('profileupdate/',views.profileUpdate,name = 'profileUpdate'),
     path('upload/',views.imageupload,name = 'imageupload'),
+    path('generated/',views.generated,name = 'generated'),
 ]
 
 # Static media links.

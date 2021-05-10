@@ -254,3 +254,7 @@ def imageupload(request):
             return render(
                 request, "imageupload.html", {"form": ImageForm(), "error": "Bad Data Try Again !"}
             )
+
+
+def generated(request):
+    return render(request, "generatedimage.html")
